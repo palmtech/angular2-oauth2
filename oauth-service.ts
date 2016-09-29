@@ -34,7 +34,7 @@ export class OAuthService {
         return this.createAndSaveNonce().then(function (nonce: any) {
 
             if (state) {
-                state = nonce + ";" + state;
+                state = nonce + "^" + state;
             }
             else {
                 state = nonce;
@@ -121,7 +121,7 @@ export class OAuthService {
 
         var savedNonce = this._storage.getItem("nonce");
 
-        var stateParts = state.split(';');
+        var stateParts = state.split('^');
         var nonceInState = stateParts[0];
         if (savedNonce === nonceInState) {
 

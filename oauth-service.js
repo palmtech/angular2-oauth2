@@ -27,7 +27,7 @@ var OAuthService = (function () {
         }
         return this.createAndSaveNonce().then(function (nonce) {
             if (state) {
-                state = nonce + ";" + state;
+                state = nonce + "^" + state;
             }
             else {
                 state = nonce;
@@ -105,7 +105,7 @@ var OAuthService = (function () {
         if (this.oidc && !idToken)
             return false;
         var savedNonce = this._storage.getItem("nonce");
-        var stateParts = state.split(';');
+        var stateParts = state.split('^');
         var nonceInState = stateParts[0];
         if (savedNonce === nonceInState) {
             this._storage.setItem("access_token", accessToken);
