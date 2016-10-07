@@ -1,6 +1,8 @@
 import {Base64} from 'js-base64';
 import {fromByteArray} from 'base64-js';
 import * as _sha256 from 'sha256';
+import { CrossStorageClient } from 'cross-storage-client';
+import { CrossStorageHub } from 'cross-storage-hub';
 
 var sha256: any = _sha256;
 
