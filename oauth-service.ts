@@ -1,8 +1,6 @@
 import {Base64} from 'js-base64';
 import {fromByteArray} from 'base64-js';
 import * as _sha256 from 'sha256';
-import { CrossStorageClient } from 'cross-storage-client';
-import { CrossStorageHub } from 'cross-storage-hub';
 
 var sha256: any = _sha256;
 
@@ -23,12 +21,7 @@ export class OAuthService {
     public policy = "";
 
     constructor() {
-        CrossStorageHub.init([
-            { origin: /\.localhost:3000$/, allow: ['get'] },
-            { origin: /:\/\/(www\.)?localhost:3000$/, allow: ['get', 'set', 'del'] }
-        ]);
-
-        let storage = new CrossStorageClient('https://store.example.com/hub.html');
+        
     }
 
     public setStorage(storage: Storage) {

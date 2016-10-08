@@ -2,8 +2,6 @@
 var js_base64_1 = require('js-base64');
 var base64_js_1 = require('base64-js');
 var _sha256 = require('sha256');
-var cross_storage_client_1 = require('cross-storage-client');
-var cross_storage_hub_1 = require('cross-storage-hub');
 var sha256 = _sha256;
 var OAuthService = (function () {
     function OAuthService() {
@@ -18,11 +16,6 @@ var OAuthService = (function () {
         this.logoutUrl = "";
         this.policy = "";
         this._storage = localStorage;
-        cross_storage_hub_1.CrossStorageHub.init([
-            { origin: /\.localhost:3000$/, allow: ['get'] },
-            { origin: /:\/\/(www\.)?localhost:3000$/, allow: ['get', 'set', 'del'] }
-        ]);
-        var storage = new cross_storage_client_1.CrossStorageClient('https://store.example.com/hub.html');
     }
     OAuthService.prototype.setStorage = function (storage) {
         this._storage = storage;

@@ -19,8 +19,6 @@ System.config({
     "ieee754": "node_modules/ieee754/index.js",
     "isarray": "node_modules/isarray/index.js",
     "js-base64": "node_modules/js-base64/base64.js",
-    "sha256": "node_modules/sha256/lib/sha256.js",
-    "cross-storage-client": "node_modules/cross-storage/dist/client.min.js",
-    "cross-storage-hub": "node_modules/cross-storage/dist/hub.min.js"
+    "sha256": "node_modules/sha256/lib/sha256.js"
   }
 });

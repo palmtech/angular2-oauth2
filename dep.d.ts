@@ -10,11 +10,3 @@ declare module "js-base64" {
 declare module "base64-js" {
     export var fromByteArray: any;
 }
-
-declare module "cross-storage-client" {
-    export var CrossStorageClient: any;
-}
-
-declare module "cross-storage-hub" {
-    export var CrossStorageHub: any;
-}
