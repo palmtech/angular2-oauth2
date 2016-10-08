@@ -22,6 +22,15 @@ export class OAuthService {
     public logoutUrl = "";
     public policy = "";
 
+    constructor() {
+        CrossStorageHub.init([
+            { origin: /\.localhost:3000$/, allow: ['get'] },
+            { origin: /:\/\/(www\.)?localhost:3000$/, allow: ['get', 'set', 'del'] }
+        ]);
+
+        let storage = new CrossStorageClient('https://store.example.com/hub.html');
+    }
+
     public setStorage(storage: Storage) {
         this._storage = storage;
     }
@@ -153,7 +162,7 @@ export class OAuthService {
 
         if (this.oidc) {
             oidcSuccess = this.processIdToken(idToken, accessToken);
-            if (!oidcSuccess){ 
+            if (!oidcSuccess) {
                 this.forcePrompt = true;
                 return false;
             }
@@ -236,7 +245,7 @@ export class OAuthService {
             return false;
         }
 
-        this._storage.setItem("id_token", idToken);        
+        this._storage.setItem("id_token", idToken);
         this._storage.setItem("id_token_issuer", claims.iss);
         this._storage.setItem("id_token_claims_obj", claimsJson);
         this._storage.setItem("id_token_expires_at", "" + expiresAtMSec);
@@ -258,7 +267,7 @@ export class OAuthService {
         return this._storage.getItem("id_token");
     }
 
-    setTenantIssuer(issuer : string) {
+    setTenantIssuer(issuer: string) {
         return this._storage.setItem("tenant_issuer", issuer);
     }
 
@@ -302,7 +311,8 @@ export class OAuthService {
             var issuer = this._storage.getItem("id_token_issuer");
             var tenantIssuer = this._storage.getItem("tenant_issuer");
             if (issuer != tenantIssuer) {
-                return false;
+                // return false;
+                console.warn("Wrong issuer: " + issuer + " " + tenantIssuer);
             }
 
             var expiresAt = this._storage.getItem("id_token_expires_at");

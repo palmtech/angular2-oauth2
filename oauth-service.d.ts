@@ -12,6 +12,7 @@ export declare class OAuthService {
     validationHandler: any;
     logoutUrl: string;
     policy: string;
+    constructor();
     setStorage(storage: Storage): void;
     private _storage;
     createLoginUrl(state: any): Promise<string>;
